@@ -1,5 +1,0 @@
-image: alpine/edge
-sources:
-  - https://git.sr.ht/~mcf/samurai
-tasks:
-  - build: make -C samurai
