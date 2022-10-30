@@ -1,6 +1,6 @@
 # Knitja
 
-A utility for converting Ninja build files to Knitfiles. It uses a modified [samurai](https://github.com/michaelforney/samurai) under the hood the parse and convert the ninja file. This is simply a Go wrapper around samurai.
+A utility for converting Ninja build files to Knitfiles. It uses a modified [samurai](https://github.com/michaelforney/samurai) under the hood to parse and convert the ninja file. This is simply a Go wrapper around samurai.
 
 Build:
 
