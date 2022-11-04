@@ -387,18 +387,23 @@ toknit(int argc, char *argv[])
 	printf("rule([==[\n");
 	for (e = alledges; e; e = e->allnext) {
 		for (i = 0; i < e->nout; ++i) {
-			printf("%s:", e->out[i]->path->s);
-			if (strcmp(e->rule->name, "phony") == 0)
-				printf("V:");
+			printf("%s", e->out[i]->path->s);
+			printf(i == e->nout - 1 ? ":" : " ");
+		}
+		if (strcmp(e->rule->name, "phony") == 0)
+			printf("V:");
+		printf(" ");
+		for (j = 0; j < e->nin; ++j) {
+			printf("%s", e->in[j]->path->s);
+			if (j >= e->inorderidx) {
+				printf("[O]");
+			}
 			printf(" ");
-			for (j = 0; j < e->nin; ++j) {
-				printf("%s ", e->in[j]->path->s);
-			}
-			puts("");
-			struct string *command = edgevar(e, "command", true);
-			if (command && command->n) {
-				printf("    %s\n", command->s);
-			}
+		}
+		puts("");
+		struct string *command = edgevar(e, "command", true);
+		if (command && command->n) {
+			printf("    %s\n", command->s);
 		}
 	}
 	printf("]==])\n");
